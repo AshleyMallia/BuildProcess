@@ -1,0 +1,62 @@
+# Auto detect text files and perform LF normalization
+* text=auto
+
+# These files are text and should be normalized (convert crlf => lf)
+# Git Files
+.gitattributes text eol=lf
+.gitignore text eol=lf
+.gitconfig text eol=lf
+
+# Images & Media
+*.png     binary
+*.jpg     binary
+*.jpeg    binary
+*.gif     binary
+*.ico     binary
+*.mov     binary
+*.ico     binary
+*.pdf     binary
+
+# Compression
+*.gz      binary
+*.zip     binary
+*.7z      binary
+*.nupkg   binary
+
+# Fonts
+*.ttf       binary
+*.eot       binary
+*.woff      binary
+
+# Documents
+*.doc  diff=astextplain
+*.DOC  diff=astextplain
+*.docx diff=astextplain
+*.DOCX diff=astextplain
+*.dot  diff=astextplain
+*.DOT  diff=astextplain
+*.pdf  diff=astextplain
+*.PDF  diff=astextplain
+*.rtf  diff=astextplain
+*.RTF  diff=astextplain
+
+# Compiled Dynamic libraries
+*.so      binary
+*.dylib   binary
+*.dll     binary
+*.pdb     binary
+
+# Compiled Static libraries
+*.lai   binary
+*.la    binary
+*.a     binary
+*.lib   binary
+*.llblgenproj binary
+
+# Executables
+*.exe binary
+
+# NuGet :boom:
+backend/packages/ binary
+
+*.item -text
