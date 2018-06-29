@@ -72,9 +72,11 @@
     </None>
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
+      <SubType>Designer</SubType>
     </None>
     <None Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
+      <SubType>Designer</SubType>
     </None>
   </ItemGroup>
   <ItemGroup>
@@ -131,12 +133,18 @@
   <Target Name="AfterBuild">
   </Target>
   -->
+  
+  <!-- Target "GatherAllFilesToPublish" in file "C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\MSBuild\Microsoft\VisualStudio\v15.0\Web\Microsoft.Web.Publishing.targets" from project "C:\_\BuildProcess\AfterPublish\AfterPublishTarget.csproj" (entry point): -->
+  <!-- Done building target "GatherAllFilesToPublish" in project "AfterPublishTarget.csproj". -->
   <!-- <Target Name="GatherAllFilesToPublish" DependsOnTargets="PipelineTransformPhase;CopyAllFilesToSingleFolderForPackage;" /> -->
+
   <Target Name="CustomPipelineTransformPhase" AfterTargets="PipelineTransformPhase">
     <Message Text="**************** Custom target PipelineTransformPhase ****************" Importance="high" />
   </Target>
+
   <Target Name="CustomCopyAllFilesToSingleFolderForPackage" AfterTargets="CopyAllFilesToSingleFolderForPackage">
     <Message Text="****************  CopyAllFilesToSingleFolderForPackage ****************" Importance="high" />
     <Message Text="%(FilesForPackagingFromProject.Identity)" Importance="high" />
   </Target>
+
 </Project>

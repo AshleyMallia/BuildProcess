@@ -1,0 +1,25 @@
+  <!--
+  
+  
+  /t:A = DA DB B A
+  /t:B = DB B
+  /t:C = DC C DB B -->
+  
+  <Target Name="A" DependsOnTargets="DA" />
+  <Target Name="B" BeforeTargets="A" AfterTargets="C" DependsOnTargets="DB" />
+  <Target Name="C" DependsOnTargets="DC" />
+  <Target Name="DA" />
+  <Target Name="DB" />
+  <Target Name="DC" />
+  
+  <!--
+  /t:E = DE E DF F
+  /t:F = DF F
+  /t:G = DG DF F G
+  -->
+  <Target Name="E" DependsOnTargets="DE" />
+  <Target Name="F" AfterTargets="E" BeforeTargets="G" DependsOnTargets="DF" />
+  <Target Name="G" DependsOnTargets="DG" />
+  <Target Name="DE" />
+  <Target Name="DF" />
+  <Target Name="DG" />
