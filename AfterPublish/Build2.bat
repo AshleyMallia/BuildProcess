@@ -31,12 +31,7 @@ REM prevents one more set of copies :)
             /p:DeleteExistingFiles=False ^
 			/p:publishUrl="%cd%\_\Publish" ^
 			/p:_PackageTempDir="%cd%\_\Publish" ^
-			^
-			/p:TransformWebConfigEnabled=False ^
-			/p:AutoParameterizationWebConfigConnectionStrings=False ^
-			^
 			/p:_FindDependencies=False ^
-			^
 			/p:MSDeployUseChecksum=True
 			
 REM http://www.zvolkov.com/clog/2010/05/18/how-to-packagepublish-web-site-project-using-vs2010-and-msbuild/

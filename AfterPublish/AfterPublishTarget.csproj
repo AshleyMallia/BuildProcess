@@ -1,4 +1,4 @@
-﻿<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+﻿<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="packages\Microsoft.Net.Compilers.2.8.2\build\Microsoft.Net.Compilers.props" Condition="Exists('packages\Microsoft.Net.Compilers.2.8.2\build\Microsoft.Net.Compilers.props')" />
   <Import Project="packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
@@ -133,6 +133,15 @@
   <Target Name="AfterBuild">
   </Target>
   -->
+
+  <!-- you can tap into the vs PUBLISH operation through the GatherAllFilesToPublish target 
+  <Target Name="Build">
+    <Message Importance="high" Text="***************************** Build" />
+  </Target>
+  <Target Name="GatherAllFilesToPublish">
+    <Message Importance="high" Text="***************************** GatherAllFilesToPublish" />
+  </Target>
+  -->
   
   <!-- Target "GatherAllFilesToPublish" in file "C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\MSBuild\Microsoft\VisualStudio\v15.0\Web\Microsoft.Web.Publishing.targets" from project "C:\_\BuildProcess\AfterPublish\AfterPublishTarget.csproj" (entry point): -->
   <!-- Done building target "GatherAllFilesToPublish" in project "AfterPublishTarget.csproj". -->
@@ -147,4 +156,12 @@
     <Message Text="%(FilesForPackagingFromProject.Identity)" Importance="high" />
   </Target>
 
+  
+  <!-- Disable the Transform and Parameterization features of WPP -->
+  <!-- Overriding the Targets is even better then using -->
+  <!-- /p:TransformWebConfigEnabled=False /p:AutoParameterizationWebConfigConnectionStrings=False -->
+  <Target Name="TransformWebConfig" />
+  <Target Name="PipelineMsdeploySpecificTransformPhase" />
+  
 </Project>
+
