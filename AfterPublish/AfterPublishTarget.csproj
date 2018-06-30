@@ -133,7 +133,6 @@
   <Target Name="AfterBuild">
   </Target>
   -->
-
   <!-- you can tap into the vs PUBLISH operation through the GatherAllFilesToPublish target 
   <Target Name="Build">
     <Message Importance="high" Text="***************************** Build" />
@@ -142,11 +141,10 @@
     <Message Importance="high" Text="***************************** GatherAllFilesToPublish" />
   </Target>
   -->
-  
   <!-- Target "GatherAllFilesToPublish" in file "C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\MSBuild\Microsoft\VisualStudio\v15.0\Web\Microsoft.Web.Publishing.targets" from project "C:\_\BuildProcess\AfterPublish\AfterPublishTarget.csproj" (entry point): -->
   <!-- Done building target "GatherAllFilesToPublish" in project "AfterPublishTarget.csproj". -->
   <!-- <Target Name="GatherAllFilesToPublish" DependsOnTargets="PipelineTransformPhase;CopyAllFilesToSingleFolderForPackage;" /> -->
-
+  <!--
   <Target Name="CustomPipelineTransformPhase" AfterTargets="PipelineTransformPhase">
     <Message Text="**************** Custom target PipelineTransformPhase ****************" Importance="high" />
   </Target>
@@ -155,13 +153,8 @@
     <Message Text="****************  CopyAllFilesToSingleFolderForPackage ****************" Importance="high" />
     <Message Text="%(FilesForPackagingFromProject.Identity)" Importance="high" />
   </Target>
-
-  
+-->
   <!-- Disable the Transform and Parameterization features of WPP -->
-  <!-- Overriding the Targets is even better then using -->
-  <!-- /p:TransformWebConfigEnabled=False /p:AutoParameterizationWebConfigConnectionStrings=False -->
   <Target Name="TransformWebConfig" />
   <Target Name="PipelineMsdeploySpecificTransformPhase" />
-  
 </Project>
-
