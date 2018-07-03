@@ -75,9 +75,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="DT.Sitecore">
-      <Version>8.2.170407.2</Version>
-    </PackageReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
