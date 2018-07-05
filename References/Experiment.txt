@@ -1,0 +1,56 @@
+  <!-- you can tap into the vs PUBLISH operation through the GatherAllFilesToPublish target 
+  <Target Name="Build">
+    <Message Importance="high" Text="***************************** Build" />
+  </Target>
+  <Target Name="GatherAllFilesToPublish">
+    <Message Importance="high" Text="***************************** GatherAllFilesToPublish" />
+  </Target>
+  -->
+  <!-- Target "GatherAllFilesToPublish" in file "C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\MSBuild\Microsoft\VisualStudio\v15.0\Web\Microsoft.Web.Publishing.targets" from project "C:\_\BuildProcess\AfterPublish\AfterPublishTarget.csproj" (entry point): -->
+  <!-- Done building target "GatherAllFilesToPublish" in project "AfterPublishTarget.csproj". -->
+  <!-- <Target Name="GatherAllFilesToPublish" DependsOnTargets="PipelineTransformPhase;CopyAllFilesToSingleFolderForPackage;" /> -->
+  <!--
+  <Target Name="CustomPipelineTransformPhase" AfterTargets="PipelineTransformPhase">
+    <Message Text="**************** Custom target PipelineTransformPhase ****************" Importance="high" />
+  </Target>
+
+  <Target Name="CustomCopyAllFilesToSingleFolderForPackage" AfterTargets="CopyAllFilesToSingleFolderForPackage">
+    <Message Text="****************  CopyAllFilesToSingleFolderForPackage ****************" Importance="high" />
+    <Message Text="%(FilesForPackagingFromProject.Identity)" Importance="high" />
+  </Target>
+-->
+  <!-- Disable the Transform and Parameterization features of WPP -->
+  <Target Name="TransformWebConfig" />
+  <Target Name="PipelineMsdeploySpecificTransformPhase" />
+  <!-- https://thomasfreudenberg.com/archive/2012/11/21/dont-copy-my-referenced-assemblies/ -->
+  <!-- FILES ARE NOT COPIED TO BIN BUT ROSLYN FOLDER IS COPIED 
+  <Target Name="ClearReferenceCopyLocalPaths" AfterTargets="ResolveAssemblyReferences">
+    <ItemGroup>
+      <ReferenceCopyLocalPaths Remove="@(ReferenceCopyLocalPaths)" />
+    </ItemGroup>
+  </Target>
+  -->
+  <!-- https://stackoverflow.com/questions/1682096/how-do-i-override-copylocal-private-setting-for-references-in-net-from-msbuil -->
+  <Target Name="BeforeBuild">
+    <ItemGroup>
+      <PackageReferenceNew Include="@(PackageReference)">
+        <ExcludeAssets>All</ExcludeAssets>
+      </PackageReferenceNew>
+      <PackageReference Remove="@(PackageReference)" />
+      <PackageReference Include="@(PackageReferenceNew)">
+      </PackageReference>
+    </ItemGroup>
+    <ItemGroup>
+      <ReferenceNew Include="@(Reference)">
+        <Private>False</Private>
+      </ReferenceNew>
+      <Reference Remove="@(Reference)" />
+      <Reference Include="@(ReferenceNew)" />
+    </ItemGroup>
+  </Target>
+  <!-- SETTING EXCLUDEASSETS IN BEFORE BUILD DOES NOT PREVENT COPYING -->
+  <!-- I'M SURE THERE ARE TARGETS OR DEPENDSON PROPERTIES THAT CAN BE OVERRIDDEN TO PREVENT 
+	     THE BIN AND ROSYLN FOLDERS FROM BEING WRITTEN. BUT ONLY DO THIS IF THE PACKAGING PROCESS CONTINUES TO WORK -->
+  <Target Name="_CopyFilesMarkedCopyLocal">
+    <Message Importance="High" Text="_CopyFilesMarkedCopyLocal" />
+  </Target>

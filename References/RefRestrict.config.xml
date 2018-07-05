@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<rrconfig>
+  <rules project="Ref4">
+    <!--Add rules for project Ref4 here-->
+  </rules>
+  <rules project="Ref3">
+    <!--Add rules for project Ref3 here-->
+  </rules>
+  <rules project="Ref2">
+    <!--Add rules for project Ref2 here-->
+  </rules>
+  <rules project="Ref1">
+    <!--Add rules for project Ref1 here-->
+  </rules>
+</rrconfig>
