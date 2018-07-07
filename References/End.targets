@@ -4,6 +4,24 @@
   <Target Name="TransformWebConfig" />
   <Target Name="PipelineMsdeploySpecificTransformPhase" />
  
-  <!-- <Target Name="ExtendTheBuild" AfterTargets="Build" DependsOnTargets="PipelinePreDeployCopyAllFilesToOneFolder"></Target> -->
+  <Target Name="ExtendTheBuild" AfterTargets="Build" DependsOnTargets="PipelinePreDeployCopyAllFilesToOneFolder">
+
+	
+  
+  </Target>
+
+  <!-- 
+<Target Name="CheckOutputPath" BeforeTargets="PrepareForBuild">
+	
+	<Message Text="OutputPath=$(OutputPath)" Importance="High" />
+	
+	<PropertyGroup>
+		<OutputPath>$(SolutionBaseDir)bin\$(MSBuildProjectName)\</OutputPath>
+		<OutDir>$(OutputPath)</OutDir>
+	</PropertyGroup>
+	
+</Target>
+ -->
+ 
  
 </Project>

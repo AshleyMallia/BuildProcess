@@ -18,12 +18,15 @@
 		
 		<!-- we want to set UseCommonOutputDirectory=True to prevent copying references to the bin folder -->
 		<!-- however within visual studio this setting disables incremental build, so we leave it false when building in VS -->
-		<!-- there are alternative ways to achieve the same thing -->
+		<!-- REVIST there are alternative ways to achieve the same thing -->
 		<UseCommonOutputDirectory Condition="'$(BuildingInsideVisualStudio)'!='true'">True</UseCommonOutputDirectory>
 		<UseCommonOutputDirectory Condition="'$(BuildingInsideVisualStudio)'=='true'">False</UseCommonOutputDirectory>
 
 		<!-- -->
 		<_PackageTempDir>$(SolutionBaseDir)output\$(MSBuildProjectName)\</_PackageTempDir>
+		
+		<!-- write .pdb -->
+		<CopyOutputSymbolsToOutputDirectory>True</CopyOutputSymbolsToOutputDirectory> 
 		
 	</PropertyGroup>
 </Project>
