@@ -1,0 +1,7 @@
+<Project>
+  
+  <!-- Disable the Transform and Parameterization features of WPP -->
+  <Target Name="TransformWebConfig" />
+  <Target Name="PipelineMsdeploySpecificTransformPhase" />
+  
+</Project>

@@ -48,9 +48,12 @@
       <Reference Include="@(ReferenceNew)" />
     </ItemGroup>
   </Target>
+  
   <!-- SETTING EXCLUDEASSETS IN BEFORE BUILD DOES NOT PREVENT COPYING -->
   <!-- I'M SURE THERE ARE TARGETS OR DEPENDSON PROPERTIES THAT CAN BE OVERRIDDEN TO PREVENT 
 	     THE BIN AND ROSYLN FOLDERS FROM BEING WRITTEN. BUT ONLY DO THIS IF THE PACKAGING PROCESS CONTINUES TO WORK -->
   <Target Name="_CopyFilesMarkedCopyLocal">
     <Message Importance="High" Text="_CopyFilesMarkedCopyLocal" />
   </Target>
+  
+  

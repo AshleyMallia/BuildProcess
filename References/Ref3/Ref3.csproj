@@ -125,4 +125,6 @@
   <Target Name="AfterBuild">
   </Target>
   -->
+  
+  <Import Project="..\End.targets" />
 </Project>

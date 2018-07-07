@@ -131,4 +131,6 @@
     </PropertyGroup>
     <Error Condition="!Exists('..\packages\RefRestrict.1.0.0\build\RefRestrict.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\RefRestrict.1.0.0\build\RefRestrict.targets'))" />
   </Target>
+  
+  <Import Project="..\End.targets" />
 </Project>
