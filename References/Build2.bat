@@ -12,14 +12,13 @@ REM 1. PERFORMS AN INCREMENTAL BUILD
 REM 2. PUBLISES ASP WEB APPLICATION FILES TO %CD%\BUILT
 REM 3. ONLY WRITES TO BUILT FOLDER WHEN CHANGES OCCUR
 
-%MSBUILD%	References.sln /T:BUILD /M /DETAILEDSUMMARY /VERBOSITY:NORMAL ^
+%MSBUILD%	References.sln /T:BUILD /M /DETAILEDSUMMARY /VERBOSITY:DIAGNOSTIC ^
 			/p:Configuration=Release ^
             /p:DeployOnBuild=True ^
-            /p:DeployDefaultTarget=WebPublish ^
+            /p:DeployDefaultTarget=PipelinePreDeployCopyAllFilesToOneFolder ^
             /p:WebPublishMethod=FileSystem ^
             /p:DeleteExistingFiles=False ^
-			/p:publishUrl="%cd%\built" ^
-			/p:_PackageTempDir="tempdir" ^
+			/p:_FindDependencies=False ^
 			/p:MSDeployUseChecksum=True > build2.txt
 			
 REM  <!-- In Project disable the Transform and Parameterization features of WPP -->

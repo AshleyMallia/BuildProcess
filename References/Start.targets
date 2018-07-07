@@ -1,0 +1,25 @@
+<Project>
+	<PropertyGroup>
+		<!-- set Deterministic=true to ensure that the same inputs produce idential binary outputs -->
+		<Deterministic>true</Deterministic>
+		
+		<!-- set BuildInParallel=true and use the msbuild /M command line switch to enable parallel compilation -->
+		<BuildInParallel>true</BuildInParallel>
+		
+		<SolutionBaseDir>C:\_\BuildProcess\References\</SolutionBaseDir>
+		
+		<!-- obj folder -->
+		<!-- <IntermediateOutputPath>$(SolutionDir)obj\$(Configuration)\$(MSBuildProjectName)\</IntermediateOutputPath> -->
+		<IntermediateOutputPath>$(SolutionBaseDir)obj\$(MSBuildProjectName)\</IntermediateOutputPath>
+		
+		<!-- bin folder -->
+		<OutputPath>$(SolutionBaseDir)bin\$(MSBuildProjectName)\</OutputPath>
+		<OutDir>$(OutputPath)</OutDir>
+		
+		<!-- Don't transitively copy output files, since everything builds to the same folder. -->
+		<UseCommonOutputDirectory>False</UseCommonOutputDirectory>
+
+		<_PackageTempDir>$(SolutionBaseDir)output\$(MSBuildProjectName)\</_PackageTempDir>
+		
+	</PropertyGroup>
+</Project>
