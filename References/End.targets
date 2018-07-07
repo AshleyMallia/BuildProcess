@@ -1,7 +1,9 @@
 <Project>
-  
+
   <!-- Disable the Transform and Parameterization features of WPP -->
   <Target Name="TransformWebConfig" />
   <Target Name="PipelineMsdeploySpecificTransformPhase" />
-  
+ 
+  <!-- <Target Name="ExtendTheBuild" AfterTargets="Build" DependsOnTargets="PipelinePreDeployCopyAllFilesToOneFolder"></Target> -->
+ 
 </Project>
