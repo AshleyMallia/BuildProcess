@@ -26,18 +26,29 @@
 				Condition="'@(FilesForPackagingFromProject)' != ''" />
 	</Target>
 
-	<!-- 
-<Target Name="CheckOutputPath" BeforeTargets="PrepareForBuild">
-	
-	<Message Text="OutputPath=$(OutputPath)" Importance="High" />
-	
 	<PropertyGroup>
-		<OutputPath>$(SolutionBaseDir)bin\$(MSBuildProjectName)\</OutputPath>
-		<OutDir>$(OutputPath)</OutDir>
+		<AssemblySearchPaths>$(RefDirectory);$(AssemblySearchPaths)</AssemblySearchPaths>
 	</PropertyGroup>
 	
-</Target>
- -->
+	<Target Name="BeforeResolveReferences">
+	
+		<Message Text="AssemblySearchPaths = $(AssemblySearchPaths)" Importance="High" />
+		
+	</Target>
 
+	<Target Name="AfterResolveReferences">
+	
+		<Message Importance="High" Text="ReferenceCopyLocalPaths : %(ReferenceCopyLocalPaths.FullPath) | %(ReferenceCopyLocalPaths.ResolvedFrom)" />
+		
+		<ItemGroup>
+			<ReferenceCopyLocalPaths Remove="@(ReferenceCopyLocalPaths)" Condition="%(ReferenceCopyLocalPaths.ResolvedFrom) == $(RefDirectory)"/>
+		</ItemGroup>
+		
+	</Target>
 
 </Project>
+
+
+
+
+

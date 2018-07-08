@@ -28,5 +28,7 @@
 		<!-- write .pdb -->
 		<CopyOutputSymbolsToOutputDirectory>True</CopyOutputSymbolsToOutputDirectory> 
 		
+		<RefDirectory>$(SolutionBaseDir)Ref\</RefDirectory>
+		
 	</PropertyGroup>
 </Project>
