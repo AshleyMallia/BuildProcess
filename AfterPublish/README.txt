@@ -1,6 +1,10 @@
-AfterPublish
+AfterPublish Project
 
-	Shows how to fire a target AfterPublish - see AfterPublish.csproj
+	1. Shows how to attach to the "Publish..." buttons in visual studio - use GatherAllFilesToPublish target.
+	2. Shows how to generate a BUILT folder using command line
+		- Incremental BUILD
+		- Publishes to BUILT directory without generating temp directory
+		- Turns off (overcomplicated) WPP transformation stage
 
 Also using latest versions of:
 
