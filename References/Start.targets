@@ -1,0 +1,34 @@
+<Project>
+	<PropertyGroup>
+		<!-- set Deterministic=true to ensure that the same inputs produce idential binary outputs -->
+		<Deterministic>true</Deterministic>
+		
+		<!-- set BuildInParallel=true and use the msbuild /M command line switch to enable parallel compilation -->
+		<BuildInParallel>true</BuildInParallel>
+		
+		<SolutionBaseDir>C:\_\BuildProcess\References\</SolutionBaseDir>
+		
+		<!-- obj folder -->
+		<!-- <IntermediateOutputPath>$(SolutionDir)obj\$(Configuration)\$(MSBuildProjectName)\</IntermediateOutputPath> -->
+		<IntermediateOutputPath>$(SolutionBaseDir)obj\$(MSBuildProjectName)\</IntermediateOutputPath>
+		
+		<!-- bin folder -->
+		<OutputPath>$(SolutionBaseDir)bin\$(MSBuildProjectName)\</OutputPath>
+		<OutDir>$(OutputPath)</OutDir>
+		
+		<!-- we want to set UseCommonOutputDirectory=True to prevent copying references to the bin folder -->
+		<!-- however within visual studio this setting disables incremental build, so we leave it false when building in VS -->
+		<!-- REVIST there are alternative ways to achieve the same thing -->
+		<UseCommonOutputDirectory Condition="'$(BuildingInsideVisualStudio)'!='true'">True</UseCommonOutputDirectory>
+		<UseCommonOutputDirectory Condition="'$(BuildingInsideVisualStudio)'=='true'">False</UseCommonOutputDirectory>
+
+		<!-- -->
+		<_PackageTempDir>$(SolutionBaseDir)output\$(MSBuildProjectName)\</_PackageTempDir>
+		
+		<!-- write .pdb -->
+		<CopyOutputSymbolsToOutputDirectory>True</CopyOutputSymbolsToOutputDirectory> 
+		
+		<RefDirectory>$(SolutionBaseDir)Ref\</RefDirectory>
+		
+	</PropertyGroup>
+</Project>
