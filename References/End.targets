@@ -1,16 +1,32 @@
 <Project>
 
-  <!-- Disable the Transform and Parameterization features of WPP -->
-  <Target Name="TransformWebConfig" />
-  <Target Name="PipelineMsdeploySpecificTransformPhase" />
- 
-  <Target Name="ExtendTheBuild" AfterTargets="Build" DependsOnTargets="PipelinePreDeployCopyAllFilesToOneFolder">
+	<!-- Disable the Transform and Parameterization features of WPP -->
+	<Target Name="TransformWebConfig" />
+	<Target Name="PipelineMsdeploySpecificTransformPhase" />
 
-	
-  
-  </Target>
+	<!-- REVISIT Set these to the 3 IIS server locations -->
+	<ItemGroup>
+		<TargetDirectories Include="C:\_\BuildProcess\References\output\x\" />
+		<TargetDirectories Include="C:\_\BuildProcess\References\output\y\" />
+		<TargetDirectories Include="C:\_\BuildProcess\References\output\z\" />
+	</ItemGroup>
 
-  <!-- 
+	<Target Name="CopyToTargetDirectories" AfterTargets="Build" DependsOnTargets="PipeLineCollectFilesPhase;CopyAllFilesToSingleFolderForPackage">
+
+		<!-- Copy from Source to Target (only files newer by date will be considered) -->
+		<!-- SkipMetadataExcludeTrueItems = True -> Don't copy files in the Exclude attribute of an item -->
+		<!-- DeleteItemsMarkAsExcludeTrue = True -> Delete files in the TargetDirectory if marked as Exclude -->
+
+		<CopyPipelineFiles PipelineItems="@(FilesForPackagingFromProject)"
+				SourceDirectory="$(_PackageTempDir)"
+				TargetDirectory="%(TargetDirectories.Identity)"
+				SkipMetadataExcludeTrueItems="True"
+				UpdateItemSpec="True"
+				DeleteItemsMarkAsExcludeTrue ="True"
+				Condition="'@(FilesForPackagingFromProject)' != ''" />
+	</Target>
+
+	<!-- 
 <Target Name="CheckOutputPath" BeforeTargets="PrepareForBuild">
 	
 	<Message Text="OutputPath=$(OutputPath)" Importance="High" />
@@ -22,6 +38,6 @@
 	
 </Target>
  -->
- 
- 
+
+
 </Project>
