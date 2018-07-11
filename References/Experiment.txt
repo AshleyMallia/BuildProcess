@@ -23,6 +23,7 @@
   <Target Name="TransformWebConfig" />
   <Target Name="PipelineMsdeploySpecificTransformPhase" />
   <!-- https://thomasfreudenberg.com/archive/2012/11/21/dont-copy-my-referenced-assemblies/ -->
+
   <!-- FILES ARE NOT COPIED TO BIN BUT ROSLYN FOLDER IS COPIED 
   <Target Name="ClearReferenceCopyLocalPaths" AfterTargets="ResolveAssemblyReferences">
     <ItemGroup>
@@ -30,6 +31,7 @@
     </ItemGroup>
   </Target>
   -->
+
   <!-- https://stackoverflow.com/questions/1682096/how-do-i-override-copylocal-private-setting-for-references-in-net-from-msbuil -->
   <Target Name="BeforeBuild">
     <ItemGroup>

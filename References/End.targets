@@ -26,24 +26,62 @@
 				Condition="'@(FilesForPackagingFromProject)' != ''" />
 	</Target>
 
-	<PropertyGroup>
-		<AssemblySearchPaths>$(RefDirectory);$(AssemblySearchPaths)</AssemblySearchPaths>
-	</PropertyGroup>
+
+	<!-- https://stackoverflow.com/questions/1682096/how-do-i-override-copylocal-private-setting-for-references-in-net-from-msbuil -->
+	<Target Name="BeforeBuild">
 	
-	<Target Name="BeforeResolveReferences">
+		<!-- Switch off Copy Local -->
 	
-		<Message Text="AssemblySearchPaths = $(AssemblySearchPaths)" Importance="High" />
+		<ItemGroup>
+			<PackageReferenceNew Include="@(PackageReference)">
+				<ExcludeAssets>All</ExcludeAssets>
+			</PackageReferenceNew>
+			<PackageReference Remove="@(PackageReference)" />
+			<PackageReference Include="@(PackageReferenceNew)">
+			</PackageReference>
+		</ItemGroup>
+	
+		<ItemGroup>
+			<ReferenceNew Include="@(Reference)">
+				<Private>False</Private>
+			</ReferenceNew>
+			<Reference Remove="@(Reference)" />
+			<Reference Include="@(ReferenceNew)" />
+		</ItemGroup>
+	
+		<ItemGroup>
+			<ProjectReferenceNew Include="@(ProjectReference)">
+				<Private>False</Private>
+			</ProjectReferenceNew>
+			<ProjectReference Remove="@(ProjectReference)" />
+			<ProjectReference Include="@(ProjectReferenceNew)" />
+		</ItemGroup>
+
+		<!-- <CopyToOutputDirectory>Always</CopyToOutputDirectory> -->
+	
+		<ItemGroup>
+			<CopyAlwaysItems Include="@(None)"    Condition="'%(None.CopyToOutputDirectory)'=='Always'" />
+			<CopyAlwaysItems Include="@(Content)" Condition="'%(Content.CopyToOutputDirectory)'=='Always'" />
+		</ItemGroup>
+		
+		<Message Text="@(CopyAlwaysItems)" Importance="High" />
 		
 	</Target>
 
+
+
+	<PropertyGroup>
+		<AssemblySearchPaths>$(RefDirectory);$(AssemblySearchPaths)</AssemblySearchPaths>
+	</PropertyGroup>
+
+
 	<Target Name="AfterResolveReferences">
-	
-		<Message Importance="High" Text="ReferenceCopyLocalPaths : %(ReferenceCopyLocalPaths.FullPath) | %(ReferenceCopyLocalPaths.ResolvedFrom)" />
-		
+
+
 		<ItemGroup>
 			<ReferenceCopyLocalPaths Remove="@(ReferenceCopyLocalPaths)" Condition="%(ReferenceCopyLocalPaths.ResolvedFrom) == $(RefDirectory)"/>
 		</ItemGroup>
-		
+
 	</Target>
 
 </Project>
